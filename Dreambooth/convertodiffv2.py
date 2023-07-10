@@ -635,7 +635,7 @@ def conv_transformer_to_linear(checkpoint):
 
 def convert_unet_state_dict_to_sd(v2, unet_state_dict):
   unet_conversion_map = [
-      # (stable-diffusion, HF Diffusers)
+      # (imagegen, HF Diffusers)
       ("time_embed.0.weight", "time_embedding.linear_1.weight"),
       ("time_embed.0.bias", "time_embedding.linear_1.bias"),
       ("time_embed.2.weight", "time_embedding.linear_2.weight"),
@@ -649,7 +649,7 @@ def convert_unet_state_dict_to_sd(v2, unet_state_dict):
   ]
 
   unet_conversion_map_resnet = [
-      # (stable-diffusion, HF Diffusers)
+      # (imagegen, HF Diffusers)
       ("in_layers.0", "norm1"),
       ("in_layers.2", "conv1"),
       ("out_layers.0", "norm2"),
@@ -740,7 +740,7 @@ def reshape_weight_for_sd(w):
 
 def convert_vae_state_dict(vae_state_dict):
   vae_conversion_map = [
-      # (stable-diffusion, HF Diffusers)
+      # (imagegen, HF Diffusers)
       ("nin_shortcut", "conv_shortcut"),
       ("norm_out", "conv_norm_out"),
       ("mid.attn_1.", "mid_block.attentions.0."),
@@ -776,7 +776,7 @@ def convert_vae_state_dict(vae_state_dict):
     vae_conversion_map.append((sd_mid_res_prefix, hf_mid_res_prefix))
 
   vae_conversion_map_attn = [
-      # (stable-diffusion, HF Diffusers)
+      # (imagegen, HF Diffusers)
       ("norm.", "group_norm."),
       ("q.", "query."),
       ("k.", "key."),
